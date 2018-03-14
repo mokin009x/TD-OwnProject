@@ -5,25 +5,33 @@ using UnityEngine;
 
 public class AsaultRifleBullet : MonoBehaviour
 {
+    private Vector3 Target;
+    private Vector3 Origin;
     private Vector3 BulletDirection;
     private float BulletSpeed;
+    
     
 
 
     // Use this for initialization
     void Start ()
     {
+        Origin = transform.position;
+        Target = Vector3.forward + Origin;
         BulletSpeed = 1;
         BulletDirection = Vector3.forward;
         BulletDirection.Normalize();
-        BulletDirection = BulletDirection * BulletSpeed;
+        BulletDirection = Target - Origin ;
+Debug.Log(Origin);
+        Debug.Log(Target);
+        Debug.Log(BulletDirection);
     }
 
     // Update is called once per frame
     void Update ()
     {
         move();
-
+        
 
     }
     
@@ -31,6 +39,6 @@ public class AsaultRifleBullet : MonoBehaviour
 
     public void move()
     {
-        transform.position = transform.position + BulletDirection;
+        transform.Translate(BulletDirection * BulletSpeed*Time.deltaTime); 
     }
 }

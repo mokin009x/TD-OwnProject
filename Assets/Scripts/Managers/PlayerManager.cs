@@ -16,16 +16,17 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject CameraPlayerObj;
     public GameObject WeaponParent;
-    public GameObject Weapon;
+    public GameObject WeaponInstance;
+    public GameObject WeaponBullet;
     public float Cameraspeed;
     private Transform Weaponpos;
    [HideInInspector] public Weapon WeaponManager;
     private GameObject SpawnedWeapon;
-    
-    
-    
+    public bool ShowWeapOnStart =false;
+    public bool GameStarted = true;
 
-    
+
+
     public int SelectedWeapon;
 
 
@@ -45,7 +46,8 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         WeaponManager = GameObject.Find("WeaponManager+Weapons").GetComponent<Weapon>();
-        Weaponpos = GameObject.Find("Player/Weaponpos").GetComponent<Transform>();
+        Weaponpos = GameObject.Find("Player/Player Camera/Weaponpos").GetComponent<Transform>();
+        SelectedWeapon = 1;
 
     }
 
@@ -58,27 +60,8 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-       
-        ////calculating bounds of in this case camera
-        //Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        ShowWeaponOnStart();
 
-
-        //// a preset for checking if something is in camera view
-        //if ()
-        //{
-
-        //    if (GeometryUtility.TestPlanesAABB(planes, spijkerSchilderij_1_coll.bounds))
-        //    {
-
-
-        //    }
-
-        //    if (!GeometryUtility.TestPlanesAABB(planes, spijkerSchilderij_1_coll.bounds))
-        //    {
-
-
-        //    }
-        //}
 
 
         _rotY += Input.GetAxis("Mouse X") * Cameraspeed * Time.deltaTime;
@@ -106,14 +89,16 @@ public class PlayerManager : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0)&& ShowWeapOnStart ==true)
         {
-
+            WeaponManager.FireBullet();
         }
         //Switching weapons 
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            
+
             SelectedWeapon = 1;
             SwitchingWeapons();
         }
@@ -126,6 +111,25 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    void ShowWeaponOnStart()
+    {
+        if (GameStarted == true)
+        {
+            if (WeaponManager.WeaponSlot1Obj != null && ShowWeapOnStart == false)
+            {
+                WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot1Obj;
+                WeaponInstance = WeaponManager.CurrentWeapon;
+
+
+                SpawnedWeapon = Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
+                SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
+                
+                ShowWeapOnStart = true;
+            }
+        }
+        
+    }
+
     // setting current weapon with Animation and actual switching models or prefabs
     public void SwitchingWeapons()
     {
@@ -135,14 +139,38 @@ public class PlayerManager : MonoBehaviour
             switch (SelectedWeapon)
             {
                 case 1:
-                    Weapon = WeaponManager.LoadoutWeaponSlot1;
-                    Debug.Log(SelectedWeapon);
+                    WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot1Obj;
+                    WeaponManager.CurrentWeaponBullet = WeaponManager.Slot1Bullet;
+                    WeaponInstance = WeaponManager.CurrentWeapon;
+                    
+                    
+
                     break;
                 case 2:
-                    Weapon = WeaponManager.LoadoutWeaponSlot2;
+                    WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot2Obj;
+                    WeaponManager.CurrentWeaponBullet = WeaponManager.Slot2Bullet;
+                    WeaponInstance = WeaponManager.CurrentWeapon;
+
                     break;
             }
-           SpawnedWeapon= Instantiate(Weapon, Weaponpos.transform.position, Quaternion.identity);
+           SpawnedWeapon= Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
+            SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
+            switch (SelectedWeapon)
+            {
+                case 1:
+                    WeaponManager.WeaponExit1 = SpawnedWeapon.GetComponentInChildren<Transform>();
+                    WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit1;
+
+
+                    break;
+                case 2:
+                    WeaponManager.WeaponExit2 = SpawnedWeapon.GetComponentInChildren<Transform>();
+                    WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit2;
+
+
+
+                    break;
+            }
         }
         else
         {
@@ -153,9 +181,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     // shooting current weapon
-    public void Fire()
-    {
-    }
+    
 
     public void Reload()
     {

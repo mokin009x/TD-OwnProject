@@ -95,12 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b856025a63c738d478622fb5101a96a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponModel: {fileID: 0}
-  WeaponDmg: 0
-  WeaponBullet: {fileID: 0}
-  WeaponFireRate: 0
-  WeaponBulletExitPoint: {fileID: 0}
-  AsaultBullet: {fileID: 1462393115933886}
 --- !u!135 &135385406162806160
 SphereCollider:
   m_ObjectHideFlags: 1

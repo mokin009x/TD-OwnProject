@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class AsaultRifle : MonoBehaviour
 {
-    public GameObject WeaponModel;
+    public GameObject WeaponObj;
+
+    public GameObject Bullet;
+
+    public Transform BulletExitPoint;
 	// Use this for initialization
 	void Start () {
 		

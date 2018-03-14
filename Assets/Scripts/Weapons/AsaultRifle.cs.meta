@@ -6,8 +6,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - WeaponModel: {fileID: 1087965648269700, guid: b9f1664cef8ca6645a9be0fd06859719,
+  - WeaponObj: {fileID: 1087965648269700, guid: b9f1664cef8ca6645a9be0fd06859719,
       type: 2}
+  - Bullet: {fileID: 1462393115933886, guid: abedb8522a7c970419d8a520aa206c3d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

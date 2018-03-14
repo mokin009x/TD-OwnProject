@@ -5,7 +5,10 @@ using UnityEngine;
 public class Sniper : MonoBehaviour {
 
     // this is a weapon
-    public GameObject WeaponModel;
+    public GameObject WeaponObj;
+    public GameObject Bullet;
+    public Transform BulletExitPoint;
+
 
 
 
