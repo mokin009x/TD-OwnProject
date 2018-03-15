@@ -115,15 +115,17 @@ public class PlayerManager : MonoBehaviour
     {
         if (GameStarted == true)
         {
+            Cursor.lockState = CursorLockMode.Locked;
             if (WeaponManager.WeaponSlot1Obj != null && ShowWeapOnStart == false)
             {
                 WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot1Obj;
                 WeaponInstance = WeaponManager.CurrentWeapon;
-
+                WeaponManager.CurrentWeaponBullet = WeaponManager.Slot1Bullet;
 
                 SpawnedWeapon = Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
                 SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
-                
+                WeaponManager.WeaponExit1 = SpawnedWeapon.GetComponentInChildren<Transform>();
+                WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit1;
                 ShowWeapOnStart = true;
             }
         }

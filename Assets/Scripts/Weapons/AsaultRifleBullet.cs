@@ -8,7 +8,8 @@ public class AsaultRifleBullet : MonoBehaviour
     private Vector3 Target;
     private Vector3 Origin;
     private Vector3 BulletDirection;
-    private float BulletSpeed;
+    private float BulletSpeed = 1;
+    private float Dmg = 5;
     
     
 
@@ -18,7 +19,6 @@ public class AsaultRifleBullet : MonoBehaviour
     {
         Origin = transform.position;
         Target = Vector3.forward + Origin;
-        BulletSpeed = 1;
         BulletDirection = Vector3.forward;
         BulletDirection.Normalize();
         BulletDirection = Target - Origin ;
@@ -34,11 +34,23 @@ Debug.Log(Origin);
         
 
     }
-    
-    
+
+    private void OnCollisionEnter(Collision Coll)
+    {
+        if (Coll.gameObject.CompareTag("Enemy"))
+        {
+            var collidedObj = Coll.gameObject.GetComponent<Enemy>();
+            collidedObj.Hp = collidedObj.Hp - Dmg;
+            Debug.Log("hit");
+            Destroy(this.gameObject);
+
+        }
+
+    }
 
     public void move()
     {
-        transform.Translate(BulletDirection * BulletSpeed*Time.deltaTime); 
+        transform.Translate(BulletDirection * BulletSpeed*Time.deltaTime);
+
     }
 }
