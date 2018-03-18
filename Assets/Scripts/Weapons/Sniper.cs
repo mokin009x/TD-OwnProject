@@ -8,6 +8,8 @@ public class Sniper : MonoBehaviour {
     public GameObject WeaponObj;
     public GameObject Bullet;
     public Transform BulletExitPoint;
+    public int ClipSize = 10;
+    public float FireRate = 1f;
 
 
 

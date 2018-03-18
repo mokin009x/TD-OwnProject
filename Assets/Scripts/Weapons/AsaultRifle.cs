@@ -5,10 +5,10 @@ using UnityEngine;
 public class AsaultRifle : MonoBehaviour
 {
     public GameObject WeaponObj;
-
     public GameObject Bullet;
-
     public Transform BulletExitPoint;
+    public int ClipSize=30;
+    public float FireRate = 0.01f;
 	// Use this for initialization
 	void Start () {
 		

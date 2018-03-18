@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+using System.Threading;
 public class PlayerManager : MonoBehaviour 
 {
     
@@ -18,13 +18,13 @@ public class PlayerManager : MonoBehaviour
     public GameObject WeaponParent;
     public GameObject WeaponInstance;
     public GameObject WeaponBullet;
+    public float SelectedWeaponFireRate;
     public float Cameraspeed;
     private Transform Weaponpos;
    [HideInInspector] public Weapon WeaponManager;
     private GameObject SpawnedWeapon;
     public bool ShowWeapOnStart =false;
     public bool GameStarted = true;
-
 
 
     public int SelectedWeapon;
@@ -45,9 +45,12 @@ public class PlayerManager : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+
         WeaponManager = GameObject.Find("WeaponManager+Weapons").GetComponent<Weapon>();
         Weaponpos = GameObject.Find("Player/Player Camera/Weaponpos").GetComponent<Transform>();
         SelectedWeapon = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+
 
     }
 
@@ -60,6 +63,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // may need to change location of ShowWeaponOnStart
         ShowWeaponOnStart();
 
 
@@ -84,15 +88,18 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) transform.Translate(0, 0, -5 * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.D)) transform.Translate(5 * Time.deltaTime, 0, 0);
-        
-        
 
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)&& ShowWeapOnStart ==true)
+
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             WeaponManager.FireBullet();
+
         }
+
+        
+
         //Switching weapons 
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -109,13 +116,14 @@ public class PlayerManager : MonoBehaviour
             SwitchingWeapons();
 
         }
+
+       
     }
 
     void ShowWeaponOnStart()
     {
         if (GameStarted == true)
         {
-            Cursor.lockState = CursorLockMode.Locked;
             if (WeaponManager.WeaponSlot1Obj != null && ShowWeapOnStart == false)
             {
                 WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot1Obj;
@@ -126,6 +134,9 @@ public class PlayerManager : MonoBehaviour
                 SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
                 WeaponManager.WeaponExit1 = SpawnedWeapon.GetComponentInChildren<Transform>();
                 WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit1;
+                WeaponManager.CurrentClipsize = WeaponManager.Slot1Clipsize;
+                WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot1AmountOfBullets;
+                SelectedWeaponFireRate = WeaponManager.Slot1FireRate;
                 ShowWeapOnStart = true;
             }
         }
@@ -138,11 +149,16 @@ public class PlayerManager : MonoBehaviour
         //weapon.asaultrifle.model bijv.
         if (SpawnedWeapon == null)
         {
+
+            // Switching weapon visually (could be combined with animation if I had one)
             switch (SelectedWeapon)
             {
                 case 1:
                     WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot1Obj;
                     WeaponManager.CurrentWeaponBullet = WeaponManager.Slot1Bullet;
+                    WeaponManager.CurrentClipsize = WeaponManager.Slot1Clipsize;
+                    WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot1AmountOfBullets;
+                    SelectedWeaponFireRate = WeaponManager.Slot1FireRate;
                     WeaponInstance = WeaponManager.CurrentWeapon;
                     
                     
@@ -151,10 +167,15 @@ public class PlayerManager : MonoBehaviour
                 case 2:
                     WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot2Obj;
                     WeaponManager.CurrentWeaponBullet = WeaponManager.Slot2Bullet;
+                    WeaponManager.CurrentClipsize = WeaponManager.Slot2Clipsize;
+                    WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot2AmountOfBullets;
+                    SelectedWeaponFireRate = WeaponManager.Slot2FireRate;
                     WeaponInstance = WeaponManager.CurrentWeapon;
 
                     break;
             }
+
+            // setting the Exitpoint for the bullets 
            SpawnedWeapon= Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
             SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
             switch (SelectedWeapon)
