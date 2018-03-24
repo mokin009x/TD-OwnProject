@@ -30,7 +30,7 @@ public class AsaultRifleBullet : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        move();
+        Move();
         
 
     }
@@ -39,8 +39,8 @@ public class AsaultRifleBullet : MonoBehaviour
     {
         if (Coll.gameObject.CompareTag("Enemy"))
         {
-            var collidedObj = Coll.gameObject.GetComponent<Enemy>();
-            collidedObj.Hp = collidedObj.Hp - Dmg;
+            var collidedEnemyScript = Coll.gameObject.GetComponent<EnemyScript>();
+            collidedEnemyScript.Hp = collidedEnemyScript.Hp - Dmg;
             Debug.Log("hit");
             Destroy(this.gameObject);
 
@@ -48,9 +48,11 @@ public class AsaultRifleBullet : MonoBehaviour
 
     }
 
-    public void move()
+    public void Move()
     {
         transform.Translate(BulletDirection * BulletSpeed*Time.deltaTime);
 
     }
+
+    
 }

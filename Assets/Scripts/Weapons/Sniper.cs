@@ -8,8 +8,8 @@ public class Sniper : MonoBehaviour {
     public GameObject WeaponObj;
     public GameObject Bullet;
     public Transform BulletExitPoint;
-    public int ClipSize = 10;
-    public float FireRate = 1f;
+    public int ClipSize;
+    public float FireRate;
 
 
 
@@ -17,7 +17,12 @@ public class Sniper : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        
+    }
+    private void Awake()
+    {
+        FireRate = 1f;
+        ClipSize = 10;
     }
 
     // Update is called once per frame

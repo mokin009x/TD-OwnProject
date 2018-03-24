@@ -7,9 +7,8 @@ public class GameAndScenemanager : MonoBehaviour {
     //StartSceneStuff
     public GameObject[] StartSceneStates;
 
-    private List<Enemy> CurrentWaveEnemys;
-    public Enemy EnemyReference;
-    private List<Enemy> EnemyTypes ;
+    public EnemyManager enemyManager;
+    //
 	// Use this for initialization
 	void Start () {
 	    
@@ -24,10 +23,7 @@ public class GameAndScenemanager : MonoBehaviour {
         }
     }
 
-    void Wave1()
-    {
-        //Enemys.Add(new Enemy());
-    }
+  
 
     //Buttons for StartScreen al the way to the level Selection
     public void PlayButton()

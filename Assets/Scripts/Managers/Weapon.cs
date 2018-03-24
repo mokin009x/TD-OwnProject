@@ -88,13 +88,14 @@ public class Weapon : MonoBehaviour
         }
 
         // FireRate timer
-        if (FireRate >= 0)
+        if (FireRate > 0)
         {
             FireRate = FireRate - Time.deltaTime;
+
         }
 
 
-       
+       Debug.Log("===========" + "Frame" + "===========");
 
     }
 
@@ -108,7 +109,7 @@ public class Weapon : MonoBehaviour
             Slot1Clipsize = asaultRifle.ClipSize;
             Slot1AmountOfBullets = Slot1Clipsize;
             Slot1FireRate = asaultRifle.FireRate;
-
+            
         }
         else
         {
@@ -121,10 +122,7 @@ public class Weapon : MonoBehaviour
 
         }
         Debug.Log(WeaponSlot1Obj);
-        if (FireRate > 0)
-        {
-            FireRate = FireRate - Time.deltaTime;
-        }
+        
     }
 
     void SetSniperRifle()
@@ -152,20 +150,22 @@ public class Weapon : MonoBehaviour
     }
     
 
-    // this is later going to move to the start of active game Scene
+    // this is later going to Move to the start of active game Scene
     
 
     public void FireBullet( )
     {
         while (FireRate <= 0)
         {
+
+       
             Instantiate(CurrentWeaponBullet, CurrentBulletExitPoint.transform.position, GameObject.Find("Player/Player Camera").GetComponent<Transform>().rotation);
             FireRate = PlayerManager.SelectedWeaponFireRate;
+            Debug.Log("fired");
 
         }
 
 
-        //    Debug.Log("fired");
 
 
 
