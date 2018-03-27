@@ -105,7 +105,6 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot1Obj = asaultRifle.WeaponObj;
             Slot1Bullet = asaultRifle.Bullet;
-            WeaponExit1 = asaultRifle.BulletExitPoint;
             Slot1Clipsize = asaultRifle.ClipSize;
             Slot1AmountOfBullets = Slot1Clipsize;
             Slot1FireRate = asaultRifle.FireRate;
@@ -115,7 +114,6 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot2Obj = asaultRifle.WeaponObj;
             Slot2Bullet = asaultRifle.Bullet;
-            WeaponExit2 = asaultRifle.BulletExitPoint;
             Slot2Clipsize = asaultRifle.ClipSize;
             Slot2AmountOfBullets = Slot2Clipsize;
             Slot2FireRate = asaultRifle.FireRate;
@@ -131,7 +129,6 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot1Obj = sniper.WeaponObj;
             Slot1Bullet = sniper.Bullet;
-            WeaponExit1 = sniper.BulletExitPoint;
             Slot1Clipsize = sniper.ClipSize;
             Slot1AmountOfBullets = Slot1Clipsize;
             Slot1FireRate = sniper.FireRate;
@@ -140,7 +137,6 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot2Obj = sniper.WeaponObj;
             Slot2Bullet = sniper.Bullet;
-            WeaponExit2 = sniper.BulletExitPoint;
             Slot2Clipsize = sniper.ClipSize;
             Slot2AmountOfBullets = Slot1Clipsize;
             Slot2FireRate = sniper.FireRate;

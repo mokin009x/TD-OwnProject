@@ -7,7 +7,7 @@ public class SniperRifleBullet : MonoBehaviour {
     private Vector3 Target;
     private Vector3 Origin;
     private Vector3 BulletDirection;
-    private float BulletSpeed = 1;
+    private float BulletSpeed = 20;
     private float Dmg = 5;
 
 

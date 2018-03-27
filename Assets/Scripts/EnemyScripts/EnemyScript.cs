@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    //this script keeps references to all scripts belonging to specified prefab this script is attached to;
     public float Hp;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -15,14 +15,13 @@ public class EnemyScript : MonoBehaviour
 	void Update ()
 	{
 	    Death();
-
 	}
 
     public void Death()
     {
         if (Hp <= 0)
         {
-           Destroy(this.gameObject); 
+            Destroy(this.gameObject);
         }
     }
 }

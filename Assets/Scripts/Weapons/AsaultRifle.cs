@@ -6,7 +6,6 @@ public class AsaultRifle : MonoBehaviour
 {
     public GameObject WeaponObj;
     public GameObject Bullet;
-    public Transform BulletExitPoint;
     public int ClipSize;
 
     public float FireRate;

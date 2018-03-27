@@ -160,8 +160,11 @@ public class PlayerManager : MonoBehaviour
                     WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot1AmountOfBullets;
                     SelectedWeaponFireRate = WeaponManager.Slot1FireRate;
                     WeaponInstance = WeaponManager.CurrentWeapon;
-                    
-                    
+                    SpawnedWeapon = Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
+                    SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
+                    WeaponManager.WeaponExit1 = SpawnedWeapon.GetComponentInChildren<Transform>();
+                    WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit1;
+
 
                     break;
                 case 2:
@@ -171,29 +174,16 @@ public class PlayerManager : MonoBehaviour
                     WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot2AmountOfBullets;
                     SelectedWeaponFireRate = WeaponManager.Slot2FireRate;
                     WeaponInstance = WeaponManager.CurrentWeapon;
-
+                    SpawnedWeapon = Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
+                    SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
+                    WeaponManager.WeaponExit2 = SpawnedWeapon.GetComponentInChildren<Transform>();
+                    WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit2;
                     break;
             }
 
             // setting the Exitpoint for the bullets 
-           SpawnedWeapon= Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
-            SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
-            switch (SelectedWeapon)
-            {
-                case 1:
-                    WeaponManager.WeaponExit1 = SpawnedWeapon.GetComponentInChildren<Transform>();
-                    WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit1;
-
-
-                    break;
-                case 2:
-                    WeaponManager.WeaponExit2 = SpawnedWeapon.GetComponentInChildren<Transform>();
-                    WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit2;
-
-
-
-                    break;
-            }
+          
+          
         }
         else
         {

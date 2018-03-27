@@ -33,31 +33,43 @@ public class EnemyManager : MonoBehaviour
         if (CurrentWaveEnemys !=null)
         {
            CurrentWaveEnemys.Clear();
-            for (int i = 0; i < 5; i++)
-            {
-                AddingType1();
-
-            }
+            
+                AddingType1(5);
+                AddingType2(5);
+            
         }
         else
         {
-            for (int i = 0; i < 5; i++)
-            {
-                AddingType1();
+           
+                AddingType1(5);
+                AddingType2(5);
 
-            }
+
         }
 
-        
+
 
     }
     //AddingEnemy to list
-    public void AddingType1()
+    public void AddingType1(int amount)
     {
-        thingy = EnemyTypes[0];
-        var enemyScript = thingy.GetComponent<EnemyScript>();
-        enemyScript.Hp = 100;
-       CurrentWaveEnemys.Add(thingy);
+        for (int i = 0; i < amount; i++)
+        {
+            thingy = EnemyTypes[0];
+
+            CurrentWaveEnemys.Add(thingy);
+        }
+      
+    }
+
+    public void AddingType2(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            thingy = EnemyTypes[1];
+
+            CurrentWaveEnemys.Add(thingy);
+        }
     }
 
     void SpawnCurrentWave()
