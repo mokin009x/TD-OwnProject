@@ -5,19 +5,21 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
 
-    public List<GameObject> CurrentWaveEnemys;
-    public GameObject[] EnemyTypes;// with unmodified stats
-    public GameObject thingy;
+    public List<GameObject> CurrentWave;
+    public List<List<GameObject>> Waves;
+    public GameObject Type1;
+    public GameObject Type2;
     public int WorldLevel;
-    public Transform EnemySpawnPoints;
+    public Transform[] SpawnPointsWave1;
+    public Transform[] SpawnPointsWave2;
 
     //Enemy types
-   
+
     // Use this for initialization
 
     private void Awake()
     {
-        
+        Waves = new List<List<GameObject>>();
     }
 
     
@@ -25,58 +27,60 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         
-        WL1Wave1();
     }
-    // WorldLevel 1
-    public void WL1Wave1()
-    {
-        if (CurrentWaveEnemys !=null)
-        {
-           CurrentWaveEnemys.Clear();
-            
-                AddingType1(5);
-                AddingType2(5);
-            
-        }
-        else
-        {
-           
-                AddingType1(5);
-                AddingType2(5);
-
-
-        }
-
-
-
-    }
+   
     //AddingEnemy to list
-    public void AddingType1(int amount)
+
+  public List<GameObject> NormalWave(int enemyType,int amountOfEnemys)
+   {
+       List<GameObject> test = new List<GameObject>();
+       switch (enemyType)
+       {
+            case 1:
+                AddingType1(amountOfEnemys,test);
+            break;
+
+            case 2:
+               AddingType2(amountOfEnemys,test);
+            break;
+       }
+       
+       return test;
+   }
+
+    public void AddingType2(int amount,List<GameObject> theWave)
     {
         for (int i = 0; i < amount; i++)
         {
-            thingy = EnemyTypes[0];
-
-            CurrentWaveEnemys.Add(thingy);
+           theWave.Add(Type2); 
         }
-      
     }
 
-    public void AddingType2(int amount)
+    public void AddingType1(int amount,List<GameObject> theWave)
     {
         for (int i = 0; i < amount; i++)
         {
-            thingy = EnemyTypes[1];
-
-            CurrentWaveEnemys.Add(thingy);
+            theWave.Add(Type1);
         }
     }
 
-    void SpawnCurrentWave()
+    //World 1 level 1 waves
+
+    void World1Level1Waves()
     {
-        for (int i = 0; i < CurrentWaveEnemys.Count; i++)
+        Waves.Add(NormalWave(1, 5));
+        Waves.Add(NormalWave(2, 20));
+
+    }
+    //Spawning the wave
+    void SpawnWorld1Level1Waves()
+    {
+        for (int i = 0; i < Waves.Count; i++)
         {
-            Instantiate(CurrentWaveEnemys[i], EnemySpawnPoints.transform.position, Quaternion.identity);
+            for (int j = 0; j < Waves[i].Count; j++)
+            {
+                Instantiate(Waves[i][j],SpawnPointsWave1[Random.Range(0,SpawnPointsWave1.Length)]);
+            }
 
         }
     }
@@ -86,7 +90,9 @@ public class EnemyManager : MonoBehaviour
 
 	    if (Input.GetKeyDown(KeyCode.Space))
 	    {
-	        SpawnCurrentWave();
+	        World1Level1Waves();
+
+            SpawnWorld1Level1Waves();
 	    }
     }
 }

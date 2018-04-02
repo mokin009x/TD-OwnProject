@@ -17,8 +17,6 @@ public class Weapon : MonoBehaviour
     public Transform CurrentBulletExitPoint;
     public GameObject WeaponBullet;
     public int WeaponDmg;
-    public int CurrentClipsize;
-    public int CurrentAmountOfBullets;
     public float FireRate = 0f;
 
 
@@ -26,15 +24,12 @@ public class Weapon : MonoBehaviour
     public GameObject WeaponSlot1Obj;
     public GameObject Slot1Bullet;
     public Transform WeaponExit1;
-    public int Slot1Clipsize;
-    public int Slot1AmountOfBullets;
     public float Slot1FireRate;
     //slot 2
     public GameObject WeaponSlot2Obj;
     public GameObject Slot2Bullet;
     public Transform WeaponExit2;
-    public int Slot2Clipsize;
-    public int Slot2AmountOfBullets;
+
     public float Slot2FireRate;
 
     //managers references
@@ -71,7 +66,9 @@ public class Weapon : MonoBehaviour
         //happens Before GameScene (For Quick testing it does not)
     private void Update()
     {
-       
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+        }
         // button for selecting AsaultRifle
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
@@ -105,8 +102,6 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot1Obj = asaultRifle.WeaponObj;
             Slot1Bullet = asaultRifle.Bullet;
-            Slot1Clipsize = asaultRifle.ClipSize;
-            Slot1AmountOfBullets = Slot1Clipsize;
             Slot1FireRate = asaultRifle.FireRate;
             
         }
@@ -114,8 +109,6 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot2Obj = asaultRifle.WeaponObj;
             Slot2Bullet = asaultRifle.Bullet;
-            Slot2Clipsize = asaultRifle.ClipSize;
-            Slot2AmountOfBullets = Slot2Clipsize;
             Slot2FireRate = asaultRifle.FireRate;
 
         }
@@ -129,16 +122,12 @@ public class Weapon : MonoBehaviour
         {
             WeaponSlot1Obj = sniper.WeaponObj;
             Slot1Bullet = sniper.Bullet;
-            Slot1Clipsize = sniper.ClipSize;
-            Slot1AmountOfBullets = Slot1Clipsize;
             Slot1FireRate = sniper.FireRate;
         }
         else
         {
             WeaponSlot2Obj = sniper.WeaponObj;
             Slot2Bullet = sniper.Bullet;
-            Slot2Clipsize = sniper.ClipSize;
-            Slot2AmountOfBullets = Slot1Clipsize;
             Slot2FireRate = sniper.FireRate;
 
         }
@@ -151,12 +140,13 @@ public class Weapon : MonoBehaviour
 
     public void FireBullet( )
     {
-        while (FireRate <= 0)
+        while ( FireRate <= 0)
         {
 
        
             Instantiate(CurrentWeaponBullet, CurrentBulletExitPoint.transform.position, GameObject.Find("Player/Player Camera").GetComponent<Transform>().rotation);
             FireRate = PlayerManager.SelectedWeaponFireRate;
+
             Debug.Log("fired");
 
         }

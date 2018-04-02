@@ -134,8 +134,6 @@ public class PlayerManager : MonoBehaviour
                 SpawnedWeapon.transform.SetParent(CameraPlayerObj.transform);
                 WeaponManager.WeaponExit1 = SpawnedWeapon.GetComponentInChildren<Transform>();
                 WeaponManager.CurrentBulletExitPoint = WeaponManager.WeaponExit1;
-                WeaponManager.CurrentClipsize = WeaponManager.Slot1Clipsize;
-                WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot1AmountOfBullets;
                 SelectedWeaponFireRate = WeaponManager.Slot1FireRate;
                 ShowWeapOnStart = true;
             }
@@ -154,10 +152,9 @@ public class PlayerManager : MonoBehaviour
             switch (SelectedWeapon)
             {
                 case 1:
+
                     WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot1Obj;
                     WeaponManager.CurrentWeaponBullet = WeaponManager.Slot1Bullet;
-                    WeaponManager.CurrentClipsize = WeaponManager.Slot1Clipsize;
-                    WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot1AmountOfBullets;
                     SelectedWeaponFireRate = WeaponManager.Slot1FireRate;
                     WeaponInstance = WeaponManager.CurrentWeapon;
                     SpawnedWeapon = Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);
@@ -168,10 +165,9 @@ public class PlayerManager : MonoBehaviour
 
                     break;
                 case 2:
+
                     WeaponManager.CurrentWeapon = WeaponManager.WeaponSlot2Obj;
                     WeaponManager.CurrentWeaponBullet = WeaponManager.Slot2Bullet;
-                    WeaponManager.CurrentClipsize = WeaponManager.Slot2Clipsize;
-                    WeaponManager.CurrentAmountOfBullets = WeaponManager.Slot2AmountOfBullets;
                     SelectedWeaponFireRate = WeaponManager.Slot2FireRate;
                     WeaponInstance = WeaponManager.CurrentWeapon;
                     SpawnedWeapon = Instantiate(WeaponInstance, Weaponpos.transform.position, CameraPlayerObj.transform.rotation);

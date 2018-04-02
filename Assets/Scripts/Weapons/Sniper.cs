@@ -7,7 +7,9 @@ public class Sniper : MonoBehaviour {
     // this is a weapon
     public GameObject WeaponObj;
     public GameObject Bullet;
-    public int ClipSize;
+    public int MagazineSize;
+    public int BulletsInMagazine;
+
     public float FireRate;
 
 
@@ -21,7 +23,7 @@ public class Sniper : MonoBehaviour {
     private void Awake()
     {
         FireRate = 1f;
-        ClipSize = 10;
+        MagazineSize = 10;
     }
 
     // Update is called once per frame

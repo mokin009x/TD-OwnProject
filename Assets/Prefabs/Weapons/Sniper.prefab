@@ -20,9 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4687638664188568}
   - component: {fileID: 33845653240756810}
-  - component: {fileID: 135479629230875254}
   - component: {fileID: 23545146694270910}
-  - component: {fileID: 114149864835428940}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Untagged
@@ -113,30 +111,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585748169038414}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114149864835428940
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1585748169038414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f87c628d90da69459ac55d675b17b42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponObj: {fileID: 0}
-  Bullet: {fileID: 0}
-  ClipSize: 0
-  FireRate: 0
---- !u!135 &135479629230875254
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1585748169038414}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

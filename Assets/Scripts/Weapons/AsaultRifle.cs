@@ -6,7 +6,8 @@ public class AsaultRifle : MonoBehaviour
 {
     public GameObject WeaponObj;
     public GameObject Bullet;
-    public int ClipSize;
+    public int MagazineSize;
+    public int BulletsInMagazine;
 
     public float FireRate;
 	// Use this for initialization
@@ -18,7 +19,7 @@ public class AsaultRifle : MonoBehaviour
     private void Awake()
     {
         FireRate = 0.1f;
-        ClipSize = 30;
+        MagazineSize = 30;
     }
 
     // Update is called once per frame
